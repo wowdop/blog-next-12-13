@@ -7,7 +7,7 @@ import { use } from 'react';
 const getMeTheDateForBlog = async () => {
   try {
     const articleList = await (
-      await fetch(`https://next123.netlify.app/api/blog`)
+      await fetch(`https://nest13-wowjob.netlify.app/api/blog`)
     ).json();
     return {
       test: 'yes',

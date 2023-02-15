@@ -4,7 +4,7 @@ import Link from 'next/link';
 const getArticle = async (articelid: string) => {
   try {
     const article = await (
-      await fetch(`http://localhost:4201/api/blog/${articelid}`)
+      await fetch(`https://nest13-wowjob.netlify.app/api/blog/${articelid}`)
     ).json();
     return article;
   } catch (error: any) {
