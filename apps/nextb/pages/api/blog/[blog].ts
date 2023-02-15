@@ -7,6 +7,8 @@ const handler: NextApiHandler = async (
   response: NextApiResponse
 ) => {
   const { method, query } = request;
+  console.log('query');
+  console.log(query.blog);
 
   await NextCors(request, response, {
     method: ['GET'],
@@ -17,7 +19,7 @@ const handler: NextApiHandler = async (
   switch (method) {
     case 'GET':
       // get me data from Firebase and return it on the next line
-      response.status(200).json(articleList);
+      response.status(200).json(articleList[+query.blog]);
       break;
 
     default:

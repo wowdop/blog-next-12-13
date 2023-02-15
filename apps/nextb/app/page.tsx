@@ -2,20 +2,29 @@
 
 import { Button } from '@super/ui';
 import Link from 'next/link';
+import { use } from 'react';
 
 const getMeTheDateForBlog = async () => {
-  const articleList = await (
-    await fetch(`https://next123.netlify.app/api/blog`)
-  ).json();
+  try {
+    const articleList = await (
+      await fetch(`https://next123.netlify.app/api/blog`)
+    ).json();
+    return {
+      test: 'yes',
+      articleList,
+    };
+  } catch (error: any) {
+    console.log('error getting data', error.message);
 
-  return {
-    test: 'yes',
-    articleList,
-  };
+    return {
+      test: 'yes',
+      articleList: [],
+    };
+  }
 };
 
 const NextB = () => {
-  const { test, articleList = [] }: any = getMeTheDateForBlog();
+  const { test, articleList = [] }: any = use(getMeTheDateForBlog());
   console.log('data ****');
   console.log({ test, articleList });
   return (
