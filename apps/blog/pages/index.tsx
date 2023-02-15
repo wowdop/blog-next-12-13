@@ -1,10 +1,25 @@
 import { Button } from '@super/ui';
-import { articleList } from '@super/util';
 import Link from 'next/link';
 
-const Blog = () => (
+export const getServerSideProps = async () => {
+  const articleList = await await (
+    await fetch(`https://next123.netlify.app/api/blog`)
+  ).json();
+  return {
+    props: {
+      test: 'yes',
+      articleList,
+    },
+  };
+};
+
+const Blog = ({ test, articleList }) => (
   <div>
     <h1>Blog</h1>
+    <div>Is server side working?</div>
+    <p>
+      <b>{test}</b>
+    </p>
 
     <div>
       <Button>Join now</Button>
