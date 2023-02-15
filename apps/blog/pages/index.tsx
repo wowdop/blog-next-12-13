@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const getServerSideProps = async () => {
   const articleList = await (
-    await fetch(`https://next123.netlify.app/api/blog`)
+    await fetch(`https://nest12-wowjob.netlify.app/api/blog`)
   ).json();
   return {
     props: {
@@ -15,7 +15,7 @@ export const getServerSideProps = async () => {
 
 const Blog = ({ test, articleList }) => (
   <div>
-    <h1>Blog</h1>
+    <h1>Blog with Next 12</h1>
     <div>Is server side working?</div>
 
     <h2>Source Code</h2>
