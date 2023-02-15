@@ -1,0 +1,70 @@
+{
+  "name": "nextb",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nextb",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/nextb",
+        "outputPath": "dist/apps/nextb"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/nextb"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "nextb:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "nextb:build:development",
+          "dev": true,
+          "port": 4201
+        },
+        "production": {
+          "buildTarget": "nextb:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "nextb:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/nextb/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nextb/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": ["type:app"]
+}

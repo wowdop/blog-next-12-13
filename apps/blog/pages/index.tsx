@@ -2,7 +2,7 @@ import { Button } from '@super/ui';
 import Link from 'next/link';
 
 export const getServerSideProps = async () => {
-  const articleList = await await (
+  const articleList = await (
     await fetch(`https://next123.netlify.app/api/blog`)
   ).json();
   return {
